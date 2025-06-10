@@ -36,6 +36,44 @@ function App() {
   const handleNext = () => setActiveStep((s) => Math.min(TotalSteps - 1, s + 1));
   const handleBack = () => setActiveStep((s) => Math.max(0, s - 1));
 
+  // When on the welcome step, show only the CTA; after that, show normal stepper
+  const renderStepControls = () => {
+    if (activeStep === 0) return null;
+    return (
+      <div style={{
+        marginTop: 32,
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'space-between',
+        gap: 12,
+        alignItems: 'center',
+        maxWidth: 440
+      }}>
+        <button
+          className="btn"
+          onClick={handleBack}
+          disabled={activeStep === 0}
+        >
+          Back
+        </button>
+        <span>Step {activeStep + 1} of {TotalSteps}</span>
+        <button
+          className="btn btn-large"
+          onClick={handleNext}
+          disabled={activeStep === TotalSteps - 1}
+        >
+          Next
+        </button>
+      </div>
+    );
+  };
+
+  // Pass the 'onStart' directly to WelcomeStep, others render as usual
+  const stepProps =
+    activeStep === 0
+      ? { onStart: () => setActiveStep(1) }
+      : {};
+
   return (
     <div className="app">
       <nav className="navbar">
@@ -57,32 +95,8 @@ function App() {
       <main>
         <div className="container" style={{ paddingTop: 110 }}>
           <div className="hero" style={{ minHeight: 420 }}>
-            <StepComponent />
-            <div style={{
-              marginTop: 32,
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'space-between',
-              gap: 12,
-              alignItems: 'center',
-              maxWidth: 440
-            }}>
-              <button
-                className="btn"
-                onClick={handleBack}
-                disabled={activeStep === 0}
-              >
-                Back
-              </button>
-              <span>Step {activeStep + 1} of {TotalSteps}</span>
-              <button
-                className="btn btn-large"
-                onClick={handleNext}
-                disabled={activeStep === TotalSteps - 1}
-              >
-                Next
-              </button>
-            </div>
+            <StepComponent {...stepProps} />
+            {renderStepControls()}
           </div>
         </div>
       </main>
