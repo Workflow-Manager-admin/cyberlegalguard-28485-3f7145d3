@@ -2,12 +2,13 @@ import React from "react";
 
 /**
  * PUBLIC_INTERFACE
- * WelcomeStep: Friendly, brand-aligned intro for CyberLegalGuard with CTA
+ * WelcomeStep: Brand-aligned welcome page for CyberLegalGuard.
+ * Displays intro, brand messaging, 3-minute promise, and CTA button.
  * @param {object} props
- * @param {function} props.onStart - Callback for "Get Started"
+ * @param {function} props.onStart - Callback for CTA ("Start Assessment")
  */
 function WelcomeStep({ onStart }) {
-  // Persona: Friendly, helpful, reassuring (CyberLegalGuard theme)
+  // Visual style: bold CTA, clear brand, inviting reassurance
   return (
     <div>
       <div className="subtitle" style={{ marginBottom: 8, letterSpacing: 1 }}>
