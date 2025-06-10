@@ -2,6 +2,15 @@
 
 This project provides a minimal React template with a clean, modern UI and minimal dependencies.
 
+## Build Error: PUBLIC_URL
+
+If you encounter the error:
+```
+Template execution failed: ReferenceError: PUBLIC_URL is not defined
+```
+it is most often caused by using `PUBLIC_URL` as a JavaScript variable or using curly braces in your public/index.html. It should always be referenced as `%PUBLIC_URL%` in the HTML template for Create React App. Do **not** use `{PUBLIC_URL}` or `PUBLIC_URL` without percent signs in your HTML or JS code.  
+Check your `public/index.html` if you run into this error!
+
 ## Features
 
 - **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
